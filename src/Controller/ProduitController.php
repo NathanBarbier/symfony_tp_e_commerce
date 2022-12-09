@@ -75,7 +75,7 @@ class ProduitController extends AbstractController
     /**
      * On supprime le produit.
      */
-    #[Route('/delete/{id}', name: 'app_produit')]
+    #[Route('/delete/{id}', name: 'delete_produit')]
     public function delete(Produit $produit = null)
     {
 

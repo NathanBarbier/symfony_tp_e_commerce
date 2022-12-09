@@ -3,18 +3,23 @@
 {% block title %}Hello ProduitController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <div class="head_produit"></div>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <main>
+        <a href='{{ path('app_home') }}' class='GoBack'><- Go back</a>
+        
+        <div class="article_container">
+            <div class="article_img">
+                {% for p in produit %}
+                    <img src="" alt="">
+                </div>
+                <div class="desc_container">
+                    <div class="new">New product</div>
+                    <h1></h1>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/blorgue/www/symfony_tp_e_commerce/src/Controller/ProduitController.php'|file_link(0) }}">src/Controller/ProduitController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/blorgue/www/symfony_tp_e_commerce/templates/produit/index.html.twig'|file_link(0) }}">templates/produit/index.html.twig</a></code></li>
-    </ul>
-</div>
+
 {% endblock %}
