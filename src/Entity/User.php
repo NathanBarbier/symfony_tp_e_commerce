@@ -147,6 +147,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->paniers;
     }
 
+    public function getActivePanier(): ?Panier {
+        foreach($this->paniers as $panier) {
+            if (!$panier->isEtat()) {
+                return $panier;
+            }
+        }
+
+        return null;
+    }
+
     public function addPanier(Panier $panier): self
     {
         if (!$this->paniers->contains($panier)) {
