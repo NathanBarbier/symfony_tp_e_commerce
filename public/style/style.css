@@ -1,0 +1,515 @@
+@import url("https://fonts.googleapis.com/css2?family=Fugaz+One&family=Manrope:wght@300;400;500;600&family=Patua+One&display=swap");
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  list-style: none;
+  font-family: "Manrope", sans-serif;
+}
+
+/* --------   Nav    -------- */
+
+header {
+  background-color: transparent;
+}
+
+nav {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 10vh;
+  min-height: 100px;
+  width: 100%;
+  padding: 0 165px 0 165px;
+}
+
+#audiophile_logo {
+  width: 145px;
+}
+
+#nav_link_container ul li a {
+  color: rgba(255, 255, 255, 1);
+  font-family: "Manrope", sans-serif;
+  font-size: 16px;
+  letter-spacing: 2px;
+}
+
+#nav_link_container ul {
+  display: flex;
+  gap: 35px;
+}
+
+#basket_logo {
+  cursor: pointer;
+  width: 35px;
+}
+
+.nav_link {
+  position: relative;
+}
+
+#logo_container,
+#nav_basket {
+  display: flex;
+  flex: 1;
+}
+
+#nav_basket {
+  justify-content: end;
+}
+
+.nav_link:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  border-radius: 5px;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background: #d87d4a;
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out;
+}
+
+.nav_link:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+#head_title_1 {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 10px;
+  color: #fff;
+  opacity: 50%;
+  text-transform: uppercase;
+}
+
+#head_title_2 {
+  font-size: 62px;
+  font-weight: 700;
+  line-height: 58px;
+  letter-spacing: 2px;
+  color: #fff;
+}
+
+#head_title_3 {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 25px;
+  letter-spacing: 0px;
+  color: #fff;
+  opacity: 65%;
+}
+
+#headphone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 44px;
+  color: #fff;
+}
+
+/* --------   Home    -------- */
+
+#head_home {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 730px;
+  background: url("../img/desktop_home/image-hero.jpg ");
+  padding: 0 165px 0 165px;
+  background-position: 70%;
+  background-repeat: no-repeat;
+  background-color: #191919;
+}
+
+#head_desc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+  max-width: 400px;
+  margin-left: 10%;
+  position: relative;
+}
+
+.h_article_btn {
+  position: absolute;
+  left: 0;
+  bottom: -80px;
+}
+
+.home_section.nts1 {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  border-radius: 15px;
+  background-color: #d87d4a;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  width: 1110px;
+  height: 560px;
+  padding-right: 120px;
+  align-items: center;
+}
+
+.home_section.nts1 > img {
+  position: absolute;
+  height: 460px;
+  bottom: -12px;
+  left: 140px;
+  z-index: 30;
+}
+
+.home_section.nts2 {
+  padding-left: 100px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 50px;
+  background: url("../img/desktop_home/image-speaker-zx7.jpg");
+  background-size: cover;
+  width: 1110px;
+  border-radius: 15px;
+  height: 320px;
+  gap: 20px;
+}
+
+.home_section.nts3 {
+  margin-top: 50px;
+  width: 1110px;
+  display: flex;
+  gap: 30px;
+}
+
+.article_img {
+  background: url('../img/desktop_home/image-earphones-yx1.jpg');
+  background-size: cover;
+  background-position: center center;
+  width: 50%;
+  border-radius: 10px;
+  height: 320px;
+}
+
+.title_container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 10px;
+  height: 320px;
+  width: 50%;
+  background: #dbdbdb;
+  padding-left: 100px;
+}
+
+.circle {
+  position: absolute;
+  bottom: 135px;
+  left: 330px;
+  border-radius: 50%;
+  border: solid 1px #fff;
+  z-index: -10;
+  opacity: 20%;
+  transform: translate(-50%, 50%);
+}
+
+.circle.first {
+  height: 470px;
+  width: 470px;
+}
+
+.circle.second {
+  height: 542px;
+  width: 542px;
+}
+
+.circle.third {
+  height: 944px;
+  width: 944px;
+}
+
+#headphone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 44px;
+}
+
+article {
+  background-color: #f2f2f2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.article {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+  padding-top: 160px;
+}
+
+.home_section.nts1 .article_desc .article_text {
+  color: #fff;
+  opacity: 75%;
+}
+
+.home_section.nts1 .article_desc .article_title {
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 58px;
+  letter-spacing: 2px;
+  color: #fff;
+}
+
+.article > img {
+  height: 560px;
+  width: 540px;
+  border-radius: 1.5rem;
+  box-shadow: 0px 0px 38px 27px rgba(0, 0, 0, 0.1);
+}
+
+.article_desc {
+  width: 350px;
+}
+
+.new {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 10px;
+  color: #d87d4a;
+  text-transform: uppercase;
+}
+
+.article_title {
+  font-weight: 700;
+  font-size: 40px;
+  letter-spacing: 1.43px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+#last_article {
+  margin-bottom: 200px;
+}
+
+.article_text {
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 25px;
+  opacity: 0.5;
+  text-align: justify;
+  margin-top: 25px;
+  margin-bottom: 50px;
+}
+
+.article_btn::before,
+.h_article_btn::before {
+  margin-top: 35px;
+  content: "See product";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 48px;
+  width: 160px;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  background: radial-gradient(#d87d4a, #d87d4a) center/0% 100% no-repeat;
+  background-color: #d87d4a;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
+.article_btn:hover:before,
+.h_article_btn:hover::before {
+  width: 160px;
+  content: "See product";
+  text-transform: uppercase;
+  background-color: #f2f2f2;
+  color: #fff;
+  border: 1px solid #d87d4a;
+  background-size: 100% 100%;
+}
+
+.article_btn_ntsF::before,
+.article_btn_ntsS::before {
+  margin-top: 35px;
+  content: "See product";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 48px;
+  width: 160px;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  background: radial-gradient(#000, #000) center/0% 100% no-repeat;
+  background-color: #000;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
+.article_btn_ntsF:hover::before,
+.article_btn_ntsS:hover::before {
+  width: 160px;
+  content: "See product";
+  text-transform: uppercase;
+  background-color: #f2f2f2;
+  color: #fff;
+  border: 1px solid #000;
+  background-size: 100% 100%;
+}
+
+.article_btn_ntsS::before {
+  border: 1px solid #000;
+  background-color: transparent;
+  color: #000;
+}
+
+#alt_articles,
+#alt_articles_home {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  border-radius: 8px;
+  gap: 30px;
+}
+
+#alt_articles {
+  padding-top: 160px;
+}
+
+#alt_articles_home {
+  padding-top: 230px;
+  padding-bottom: 160px;
+}
+
+.alt_container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 204px;
+  width: 350px;
+  background-color: #f1f1f1;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.164);
+}
+
+.alt_img {
+  height: 160px;
+  position: absolute;
+  top: -90px;
+  z-index: 50;
+}
+
+.box-shadow {
+  position: absolute;
+  top: 58px;
+  width: 60px;
+  height: 1px;
+  box-shadow: 0px 0px 30px 40px rgba(0, 0, 0, 0.219);
+  z-index: 5;
+  border-radius: 50%;
+}
+
+.alt_title {
+  font-weight: bold;
+  font-size: 18px;
+  letter-spacing: 1.28571px;
+  text-transform: uppercase;
+}
+
+.alt_span {
+  color: #d87d4a;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+#span_best {
+  color: #d87d4a;
+}
+
+.alt_container > a {
+  text-decoration: none;
+  color: #000;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.5;
+  margin-bottom: 20px;
+}
+
+/* --------   Footer    -------- */
+
+footer {
+  height: 365px;
+  background-color: #101010;
+  display: flex;
+  justify-content: space-between;
+}
+
+#left_footer {
+  width: 540px;
+  margin-left: 15%;
+  padding-top: 75px;
+  position: relative;
+}
+
+#footer_text {
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 25px;
+  color: #ffffff;
+  opacity: 0.5;
+  margin-top: 36px;
+  margin-bottom: 56px;
+}
+
+#footer_text2 {
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 25px;
+  color: #ffffff;
+  opacity: 0.5;
+  margin-top: 36px;
+}
+
+#right_footer {
+  display: flex;
+  flex-direction: column;
+  margin-right: 15%;
+  margin-top: 75px;
+  align-items: flex-end;
+}
+
+#footer_link {
+  padding-bottom: 105px;
+}
+
+#footer_link > a {
+  text-decoration: none;
+  color: #f1f1f1;
+  margin-left: 20px;
+}
+
+#network_link {
+  display: flex;
+  gap: 20px;
+}
