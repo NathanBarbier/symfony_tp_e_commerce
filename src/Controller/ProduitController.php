@@ -26,7 +26,7 @@ class ProduitController extends AbstractController
     }
 
     #[Route('/produit/{id}', name: 'app_produit')]
-    public function index(Produit $produit): Response
+    public function index(Produit $produit = null): Response
     {
         $form = "";
 
