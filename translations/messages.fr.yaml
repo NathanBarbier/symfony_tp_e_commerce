@@ -9,4 +9,5 @@ panier:
   delete:
      confirm: "le panier a été supprimé"
      canceled: "le panier n'a pas pu être supprimé"
-
+commande:
+  introuvable: "La commande est introuvable"
