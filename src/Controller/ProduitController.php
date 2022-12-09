@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Panier;
 use App\Entity\Produit;
 use App\Form\ProduitType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -29,6 +30,9 @@ class ProduitController extends AbstractController
     {
         $form = "";
 
+        /** @var Panier $panier */
+        $panier = $this->em->getRepository(Panier::class)->findActivePanier($this->getUser());
+
         if ($this->isGranted('ROLE_ADMIN')) {
             $form = $this->createForm(ProduitType::class, $produit);
 
@@ -41,6 +45,7 @@ class ProduitController extends AbstractController
         }
 
         return $this->render('produit/index.html.twig', [
+            'panier' => $panier,
             'produit' => $produit,
             'form' => $form,
         ]);
