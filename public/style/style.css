@@ -481,6 +481,11 @@ main {
   margin-bottom: 56px;
 }
 
+.article_container {
+  display: flex;
+  align-items: center ;
+}
+
 /* --------   Footer    -------- */
 
 footer {
