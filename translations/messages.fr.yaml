@@ -1,3 +1,12 @@
-produit.update.confirm: "le produit a été mise à jour"
-produit.introuvable: "Produit introuvable"
-produit.supprimé: "Produit supprimé"
+produit:
+  update:
+    confirm: "le produit a été mise à jour"
+    canceled: "le produit n'a pas pu être mis à jour"
+  introuvable: "Produit introuvable"
+  supprimé: "Produit supprimé"
+panier:
+  introuvable: "Panier introuvable"
+  delete:
+     confirm: "le panier a été supprimé"
+     canceled: "le panier n'a pas pu être supprimé"
+
