@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\Panier;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\ORM\Query\ResultSetMapping;
 
 /**
  * @extends ServiceEntityRepository<Panier>
@@ -37,6 +39,31 @@ class PanierRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findActivePanier(UserInterface $user) {
+
+         $qb =  $this->createQueryBuilder('p');
+         $qb->where("p.utilisateur = :user")
+             ->andWhere("p.etat = 0")
+             ->setParameter("user", $user);
+         ;
+
+        return $qb->getQuery()->getSingleResult();
+
+        // $rsm = new ResultSetMapping();
+        // $rsm->addScalarResult("id", "id");
+        // $rsm->addScalarResult("utilisateur_id", "utilisateur_id");
+        // $rsm->addScalarResult("date_achat", "date_achat");
+        // $rsm->addScalarResult("etat", "etat");
+//
+        // return $this->getEntityManager()->createNativeQuery(
+        //     "SELECT * FROM panier p
+        //     WHERE p.etat = 0
+        //     AND p.utilisateur_id = 1
+        //     ", $rsm
+        // )->getResult();
+
     }
 
 //    /**
