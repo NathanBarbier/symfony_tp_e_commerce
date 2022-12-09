@@ -24,6 +24,7 @@ nav {
   min-height: 100px;
   width: 100%;
   padding: 0 165px 0 165px;
+  
 }
 
 #audiophile_logo {
@@ -191,12 +192,15 @@ nav {
 }
 
 .article_img {
-  background: url('../img/desktop_home/image-earphones-yx1.jpg');
   background-size: cover;
   background-position: center center;
   width: 50%;
   border-radius: 10px;
   height: 320px;
+}
+
+.nts3_img {
+  border-radius: 10px;
 }
 
 .title_container{
@@ -216,7 +220,7 @@ nav {
   left: 330px;
   border-radius: 50%;
   border: solid 1px #fff;
-  z-index: -10;
+  z-index: 10;
   opacity: 20%;
   transform: translate(-50%, 50%);
 }
@@ -362,6 +366,8 @@ article {
   background-color: #000;
   text-transform: uppercase;
   font-size: 13px;
+  z-index: 1000;
+  position: absolute  ;
 }
 
 .article_btn_ntsF:hover::before,
@@ -456,11 +462,30 @@ article {
   margin-bottom: 20px;
 }
 
+/* --------   page produit    -------- */
+
+.head_produit {
+  height: 10vh;
+  background-color: #262626 ;
+}
+
+main {
+  padding: 60px 165px 165px 165px;
+  width: 100%;
+  background-color: #F2F2F2;
+}
+
+.GoBack {
+  color: rgb(90, 90, 90);
+  font-weight: 500;
+  margin-bottom: 56px;
+}
+
 /* --------   Footer    -------- */
 
 footer {
   height: 365px;
-  background-color: #101010;
+  background-color: #262626;
   display: flex;
   justify-content: space-between;
 }
