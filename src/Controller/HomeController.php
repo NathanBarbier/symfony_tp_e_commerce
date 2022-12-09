@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Panier;
 use App\Entity\Produit;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -27,9 +28,14 @@ class HomeController extends AbstractController
         if ($this->getUser()) {
             return $this->redirectToRoute('/');
         }
+
+        /** @var Panier $panier */
+        $panier = $this->em->getRepository(Panier::class)->findActivePanier($this->getUser());
+
         $produits = $this->em->getRepository(Produit::class)->findAll();
 
         return $this->render('home/index.html.twig', [
+            'panier' => $panier,
             'produits' => $produits,
             'controller_name' => 'HomeController',
         ]);
