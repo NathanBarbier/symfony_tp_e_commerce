@@ -31,6 +31,8 @@ class HomeController extends AbstractController
     public function index(
         Request $request,
     ): Response {
+
+        $panier = null;
         /** @var User $user */
         if (null !== $user = $this->getUser()) {
             /** @var Panier $panier */
