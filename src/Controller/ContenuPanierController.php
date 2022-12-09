@@ -27,7 +27,7 @@ class ContenuPanierController extends AbstractController
     }
 
     #[Route('/create/{produit}', name: 'create_contenu_panier')]
-    public function create(Produit $produit): Response
+    public function create(Produit $produit = null): Response
     {
         /** redirection avec message si le produit n'existe pas */
         if (null === $produit) {
@@ -37,9 +37,8 @@ class ContenuPanierController extends AbstractController
 
         /**
          * on vérifie si l'utilisateur est connecté
-         *  on regarde si il a un panier en cours, si non on en crée un si oui on le met à jour
-         * si il est connecté on lui permet la création d'un contenuPanier
-         * si le produit est déjà lié a un contenuPanier par rapport a un panier déjà existant on le met à jour
+         * on regarde si il a un panier en cours, si non on en crée un si oui on le met à jour
+         * si le contenuPanier est déjà lié a un produit dans le panier on le met à jour
          * sinon on crèe un nouveau contenuPanier
          */
         /** @var User $user */
@@ -59,17 +58,18 @@ class ContenuPanierController extends AbstractController
             if (null !== $contenuPanier) {
                 $contenuPanier->setQuantite($contenuPanier->getQuantite() + 1);
                 $contenuPanier->setDate(new \DateTimeImmutable());
+            } else {
+                $contenuPanier = new ContenuPanier();
+                $contenuPanier->setQuantite(1);
+                $contenuPanier->setDate(new \DateTimeImmutable());
+                $contenuPanier->setPanier($panier);
             }
 
-            $contenuPanier = new ContenuPanier();
-            $contenuPanier->setQuantite(1);
-            $contenuPanier->setDate(new \DateTimeImmutable());
-            $contenuPanier->setPanier($panier);
+            $this->em->persist($contenuPanier);
+            $this->em->flush();
         }
 
-        return $this->render('contenu_panier/index.html.twig', [
-            'controller_name' => 'ContenuPanierController',
-        ]);
+        return $this->redirectToRoute('app_home');
     }
 
     protected function createPanier($user): Panier {

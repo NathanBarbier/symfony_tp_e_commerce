@@ -23,6 +23,7 @@ class PanierController extends AbstractController
         $this->translator = $translator;
     }
 
+    /** suppression d'un panier */
     #[Route('/delete/{id}', name: 'app_panier')]
     public function index(Panier $panier): Response
     {

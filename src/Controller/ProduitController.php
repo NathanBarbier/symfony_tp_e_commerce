@@ -7,7 +7,6 @@ use App\Entity\Produit;
 use App\Entity\User;
 use App\Form\ProduitType;
 use Doctrine\ORM\EntityManagerInterface;
-use PhpParser\Node\Stmt\TryCatch;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -29,6 +28,7 @@ class ProduitController extends AbstractController
 
     /**
      * Page d'affichage d'un produit
+     * elle permet également l'update du produit si l'utilisateur est ADMIN.
      */
     #[Route('/show/{id}', name: 'app_produit')]
     public function index(Produit $produit = null): Response
@@ -40,10 +40,6 @@ class ProduitController extends AbstractController
         }
 
         $form = "";
-
-        if (null !== $user = $this->getUser()) {
-            $panier = $user->getActivePanier();
-        }
 
         /** Si l'utilisateur est connecté on récupère son panier */
         /** @var User $user */
