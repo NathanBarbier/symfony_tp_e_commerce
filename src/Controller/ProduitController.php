@@ -4,14 +4,16 @@ namespace App\Controller;
 
 use App\Entity\Panier;
 use App\Entity\Produit;
+use App\Entity\User;
 use App\Form\ProduitType;
 use Doctrine\ORM\EntityManagerInterface;
+use PhpParser\Node\Stmt\TryCatch;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-#[Route('{_locale}')]
+#[Route('{_locale}/produit')]
 class ProduitController extends AbstractController
 {
     protected EntityManagerInterface $em;
@@ -25,22 +27,45 @@ class ProduitController extends AbstractController
         $this->translator = $translator;
     }
 
-    #[Route('/produit/{id}', name: 'app_produit')]
+    /**
+     * Page d'affichage d'un produit
+     */
+    #[Route('/show/{id}', name: 'app_produit')]
     public function index(Produit $produit = null): Response
     {
+        /** redirection avec message si le produit n'existe pas */
+        if (null === $produit) {
+            $this->addFlash('danger', $this->translator->trans('produit.introuvable'));
+            return $this->redirectToRoute('app_home');
+        }
+
         $form = "";
 
-        /** @var Panier $panier */
-        $panier = $this->em->getRepository(Panier::class)->findActivePanier($this->getUser());
+        if (null !== $user = $this->getUser()) {
+            $panier = $user->getActivePanier();
+        }
 
+        /** Si l'utilisateur est connecté on récupère son panier */
+        /** @var User $user */
+        if (null !== $user = $this->getUser()) {
+            /** @var Panier $panier */
+            $panier = $user->getActivePanier();
+        }
+
+        /** si le user est admin on crèe le form de modification. */
         if ($this->isGranted('ROLE_ADMIN')) {
             $form = $this->createForm(ProduitType::class, $produit);
 
-            if ($form->isSubmitted() && $form->isValid()) {
-                $this->em->persist($produit);
-                $this->em->flush();
+            try {
+                if ($form->isSubmitted() && $form->isValid()) {
+                    $this->em->persist($produit);
+                    $this->em->flush();
 
-                $this->addFlash('success', $this->translator->trans('produit.update.confirm'));
+                    $this->addFlash('success', $this->translator->trans('produit.update.confirm'));
+                }
+            } catch (\Exception $e) {
+                $this->addFlash('danger', $this->translator->trans('produit.update.canceled'));
+                $this->addFlash('danger', $e->getMessage());
             }
         }
 
@@ -49,5 +74,35 @@ class ProduitController extends AbstractController
             'produit' => $produit,
             'form' => $form,
         ]);
+    }
+
+    /**
+     * On supprime le produit.
+     */
+    #[Route('/delete/{id}', name: 'app_produit')]
+    public function delete(Produit $produit = null)
+    {
+
+        /** redirection si le user n'est pas Admin */
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            $this->redirectToRoute('app_home');
+        }
+
+        /** redirection avec message si le produit n'existe pas */
+        if (null === $produit) {
+            $this->addFlash('danger', $this->translator->trans('produit.introuvable'));
+            return $this->redirectToRoute('app_home');
+        }
+
+        try {
+            $this->em->remove($produit);
+            $this->em->flush();
+        } catch (\Exception $e) {
+            $this->addFlash('danger', $e->getMessage());
+        }
+
+        $this->addFlash('success', $this->translator->trans('produit.supprimé'));
+
+        return $this->redirectToRoute('app_home');
     }
 }
