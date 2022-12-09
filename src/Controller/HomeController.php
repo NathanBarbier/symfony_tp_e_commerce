@@ -28,7 +28,6 @@ class HomeController extends AbstractController
             return $this->redirectToRoute('/');
         }
         $produits = $this->em->getRepository(Produit::class)->findAll();
-
         return $this->render('home/index.html.twig', [
             'produits' => $produits,
             'controller_name' => 'HomeController',

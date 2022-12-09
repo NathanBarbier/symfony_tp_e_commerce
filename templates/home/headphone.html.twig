@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Enceinte{% endblock %}
+
+{% block body %}
+    <section id="head">
+        <div id="headphone">
+            <h1>HEADPHONES</h1>
+        </div>
+    </section>
+    
+    <article>
+
+        <div class="article">
+            <img class="article_img" src="{{ asset('img/product-xx99-mark-two-headphones/image-category-page-preview.jpg') }}" alt="casque audio">
+            <div class="article_desc">
+                <p class="new">New product</p>
+                <h2 class="article_title">XX99 Mark II Headphones</h2>
+                <p class="article_text">The new XX99 Mark II headphones is the pinnacle of pristine audio. It redefines your premium headphone experience by reproducing the balanced depth and precision of studio-quality sound.</p>
+                <a class="article_btn"></a>
+            </div>
+        </div>
+
+        <div class="article">
+            <div class="article_desc">
+                <p class="new">New product</p>
+                <h2 class="article_title">XX99 Mark I Headphones</h2>
+                <p class="article_text">As the gold standard for headphones, the classic XX99 Mark I offers detailed and accurate audio 
+                    reproduction for audiophiles, mixing engineers, and music aficionados alike in studios and on the go.</p>
+                <a class="article_btn"></a>
+            </div>
+            <img class="article_img" src="{{ asset('img/product-xx99-mark-one-headphones/image-category-page-preview.jpg') }}" alt="casque audio">
+        </div>
+
+        <div class="article">
+            <img class="article_img" src="{{ asset('img/product-xx59-headphones/image-category-page-preview.jpg') }}" alt="casque audio">
+            <div class="article_desc">
+                <p class="new">New product</p>
+                <h2 class="article_title">XX59 Headphones</h2>
+                <p class="article_text">Enjoy your audio almost anywhere and customize it to your specific tastes with the XX59 headphones. 
+                    The stylish yet durable versatile wireless headset is a brilliant companion at home or on the move.</p>
+                <a class="article_btn"></a>
+            </div>
+        </div>
+
+        <div id="alt_articles_home">
+            <div class="alt_container">
+                <img class="alt_img" src="{{ asset('img/product-xx99-mark-one-headphones/image-product-removebg-preview-removebg-preview(1).png') }}" alt="headphone audio audiophile">
+                <p class="alt_title">Headphones</p>
+                <a class="alt_link" href="#">SHOP <span class="alt_span">></span></a>
+                <div class="box-shadow"></div>
+            </div>
+
+            <div class="alt_container">
+                <img class="alt_img" src="{{ asset('img/product-zx9-speaker/image-product-removebg-preview-removebg-preview.png') }}" alt="speaker audiophile">
+                <p class="alt_title">speaker</p>
+                <a class="alt_link" href="#">SHOP <span class="alt_span">></span></a>
+                <div class="box-shadow"></div>
+            </div>
+
+            <div class="alt_container">
+                <img class="alt_img" src="{{ asset('img/product-yx1-earphones/image-product-removebg-preview-removebg-preview(2).png') }}" alt="earphone audiophile">
+                <p class="alt_title">earphones</p>
+                <a class="alt_link" href="#">SHOP <span class="alt_span">></span></a>
+                <div class="box-shadow"></div>
+            </div>
+        </div>
+
+        <div class="article">
+            <div class="article_desc">
+                <h2 class="article_title">Bringing you the <span id="span_best">best</span> audio gear</h2>
+                <p class="article_text">Located at the heart of New York City, Audiophile is the premier store for high end headphones,
+                    earphones, speakers, and audio accessories. We have a large showroom and luxury demonstration
+                    rooms available for you to browse and experience a wide range of our products. Stop by our store
+                    to meet some of the fantastic people who make Audiophile the best place to buy your portable
+                    audio equipment.</p>
+            </div>
+            <img id="last_article" src="{{ asset('img/shared/image-best-gear.jpg') }}" alt="casque audio">
+        </div>
+        
+    </article>
+{% endblock %}
