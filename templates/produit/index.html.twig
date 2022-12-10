@@ -6,17 +6,57 @@
     <div class="head_produit"></div>
 
     <main>
-        <a href='{{ path('app_home') }}' class='GoBack'><- Go back</a>
         
         <div class="article_container">
+        <div id='back_container'>
+           <a href='{{ path('app_home') }}' class='GoBack'><- Go back</a>
+        </div>
+        <div class="article_container_inner">
             <div class="article_img">
-                <img src="" alt="">
+                <img src="{{ asset('img/desktop/image-product.jpg') }}" alt="">
             </div>
             <div class="desc_container">
-                <div class="new">New product</div>
-                <h1>{{ produit.nom }}</h1>
+                <div class="new P">New product</div>
+                <h1 class="article_title">{{ produit.nom }}</h1>
+                <p class="article_text">{{ produit.description }}</p>
+                <p class="Article_price">$ {{ produit.prix | number_format }}</p>
+                <div class="add_cart">
+                    <div class="counter">
+                        <div id='less' class="add_btn less">-</div>
+                        <div id='count' class="add_btn count">0</div>
+                        <div id='more' class="add_btn more">+</div>
+                    </div>
+                    <div class="add_btn">
+                        
+                    </div>
+                </div>
             </div>
         </div>
+        </div>
+
+        <div id="alt_articles_home">
+            <div class="alt_container">
+                <img class="alt_img" src="{{ asset('img/product-xx99-mark-one-headphones/image-product-removebg-preview-removebg-preview(1).png') }}" alt="headphone audio audiophile">
+                <p class="alt_title">Headphones</p>
+                <a class="alt_link" href="#">SHOP <span class="alt_span">></span></a>
+                <div class="box-shadow"></div>
+            </div>
+
+            <div class="alt_container">
+                <img class="alt_img" src="{{ asset('img/product-zx9-speaker/image-product-wbg.png') }}" alt="speaker audiophile">
+                <p class="alt_title">speaker</p>
+                <a class="alt_link" href="#">SHOP <span class="alt_span">></span></a>
+                <div class="box-shadow"></div>
+            </div>
+
+            <div class="alt_container">
+                <img class="alt_img" src="{{ asset('img/product-yx1-earphones/image-product-removebg-preview-removebg-preview(2).png') }}" alt="earphone audiophile">
+                <p class="alt_title">earphones</p>
+                <a class="alt_link" href="#">SHOP <span class="alt_span">></span></a>
+                <div class="box-shadow"></div>
+            </div>
+        </div>
+
     </main>
 
 
