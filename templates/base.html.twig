@@ -24,6 +24,11 @@
                     <li><a class="nav_link" href="{{ path('app_home') }}">Casques</a></li>
                     <li><a class="nav_link" href="{{ path('app_home') }}">Enceintes</a></li>
                     <li><a class="nav_link" href="{{ path('app_home') }}">Ecouteurs</a></li>
+                    {% if utilisateur != null %}
+                        <li><a class="nav_link" href="{{ path('app_account', {'id': utilisateur.id}) }}">{{ 'navbar.my_account'|trans }}</a></li>
+                    {% else %}
+                        <li><a class="nav_link" href="{{ path('app_register') }}">{{ 'navbar.register'|trans }}</a></li>
+                    {% endif %}
                 </ul>
             </div>
             
@@ -32,6 +37,7 @@
             </div>
         </nav>
     </header>
+    <div class="head_produit"></div>
     
     {% block body %}
     

@@ -635,7 +635,8 @@ footer {
 .main-account {
   width: 100%;
   height: 90vh;
-  justify-content: space-between;
+  justify-content: center;
+  display: flex;
 }
 
 .account-info-user {
@@ -652,6 +653,8 @@ footer {
   height: 100%;
   background-color: white;
   display: flex;
+  text-align: center;
+  flex-direction: column;
 }
 
 .petit_bonhomme {
@@ -660,7 +663,13 @@ footer {
   padding-top: 3vh;
 }
 
-.main_title h1 {
+.camion {
+  text-align: center;
+  margin-inline: auto;
+  padding-top: 3vh;
+}
+
+.main_account_title h1 {
   width: 100%;
   height: fit-content;
   padding-top: 30px;
@@ -670,9 +679,26 @@ footer {
   font-weight: 700 !important;
 }
 
-.input-name {
-  border: transparent;
-  outline-color: #000;
+.main_order_title h1 {
+  width: 100%;
+  height: fit-content;
+  padding-top: 30px;
+  margin-inline: auto;
+  text-align: center;
+  color: black;
+  font-weight: 700 !important;
+}
+
+.label-custom {
+  color: white;
+  font-size: x-large;
+  font-weight: bold;
+}
+
+.input-custom {
+  font-size: x-large;
+  font-weight: bold;
+  text-align: center;
 }
 
 

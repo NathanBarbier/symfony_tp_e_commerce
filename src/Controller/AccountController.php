@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Panier;
 use App\Entity\User;
 use App\Form\UserType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -33,12 +34,18 @@ class AccountController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
 
+        $panier = null;
+        /** @var Panier $panier */
+        $panier = $user->getActivePanier();
+
         $form = $this->createForm(UserType::class, $user);
 
         return $this->render('account/index.html.twig', [
             'form' => $form,
             'utilisateur' => $this->getUser(),
-            'paniers' => array_reverse($this->getUser()->getPaniers()->toArray())
+            // je reverse pour afficher la dernière commande effectuée en premier.
+            'paniers' => array_reverse($this->getUser()->getPaniers()->toArray()),
+            'panier' => $panier,
         ]);
     }
 }
