@@ -11,3 +11,8 @@ panier:
      canceled: "le panier n'a pas pu être supprimé"
 commande:
   introuvable: "La commande est introuvable"
+account:
+  title: "Mon compte - %nom% %prenom%"
+  main_title: "Mon compte"
+user:
+  introuvable: "Utilisateur introuvable"
