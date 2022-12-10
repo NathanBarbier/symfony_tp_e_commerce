@@ -11,3 +11,27 @@ panier:
      canceled: "le panier n'a pas pu être supprimé"
 commande:
   introuvable: "La commande est introuvable"
+account:
+  title: "Mon compte - %nom% %prenom%"
+  account_title: "Mon compte"
+  order_title: "Mes commandes"
+  name: "Nom:"
+  firstname: "Prenom:"
+  email: "Email:"
+  button: "Mettre à jour"
+  order:
+    id: "Id"
+    montant: "Montant"
+    date: "Date"
+    action: "Action"
+    empty: "Vous n'avez aucune commande"
+    in_progress: "En Cours"
+    see: "Détails"
+user:
+  update:
+    confirm: "le panier a été supprimé"
+    canceled: "le panier n'a pas pu être supprimé"
+  introuvable: "Utilisateur introuvable"
+navbar:
+  my_account: "Mon compte"
+  register: "Se connecter"
