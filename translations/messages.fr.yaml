@@ -1,4 +1,5 @@
 produit:
+  out_of_stock: "Ce produit n'est plus en stock"
   update:
     confirm: "le produit a été mise à jour"
     canceled: "le produit n'a pas pu être mis à jour"
