@@ -38,6 +38,11 @@
         </nav>
     </header>
     <div class="head_produit"></div>
+    {%  for type, message in app.flashes %}
+        {% for msg in message %}
+            <p class="m-0 alert alert-{{ type }}">{{ type }} : {{ msg }}</p>
+        {% endfor %}
+    {% endfor %}
     
     {% block body %}
     

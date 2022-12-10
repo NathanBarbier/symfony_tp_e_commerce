@@ -25,7 +25,7 @@
                     <p id="Article_qte">Il reste <span id='span_qte'>{{ produit.stock }}</span> {{ produit.nom }} en stock.</p>
                 </div>
 
-                <form method='post'>
+                <form action="{{ path('create_contenu_panier', {'id': produit.id}) }}" method='post'>
                     <div class="add_cart">
                         <div class="counter">
                             <div id='less' class="count_btn less" onclick='removeOne()'>-</div>
