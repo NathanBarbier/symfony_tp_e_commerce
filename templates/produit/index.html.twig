@@ -19,17 +19,24 @@
                 <div class="new P">New product</div>
                 <h1 class="article_title">{{ produit.nom }}</h1>
                 <p class="article_text">{{ produit.description }}</p>
-                <p class="Article_price">$ {{ produit.prix | number_format }}</p>
-                <div class="add_cart">
-                    <div class="counter">
-                        <div id='less' class="add_btn less">-</div>
-                        <div id='count' class="add_btn count">0</div>
-                        <div id='more' class="add_btn more">+</div>
-                    </div>
-                    <div class="add_btn">
-                        
-                    </div>
+
+                <div class='priceStock'>
+                    <p class="Article_price">$ {{ produit.prix | number_format }}</p>
+                    <p id="Article_qte">Il reste <span id='span_qte'>{{ produit.stock }}</span> {{ produit.nom }} en stock.</p>
                 </div>
+
+                <form method='post'>
+                    <div class="add_cart">
+                        <div class="counter">
+                            <div id='less' class="count_btn less" onclick='removeOne()'>-</div>
+                            <input id='count' class="count_btn count" value='1' type="text" disabled>
+                            <div id='more' class="count_btn more" onclick='addOne()'>+</div>
+                        </div>
+                        <button type='submit' class="add_btn">
+                            Add to cart
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
         </div>
