@@ -17,10 +17,10 @@
                 <a href="{{ path('app_home') }}"><img id='audiophile_logo' src="{{ asset('img/audiophile.png')}}" alt="audiophile logo"></a>
                 {% if app.user %}
                    <p class='user_name'>Bonjour {{app.user.nom|capitalize}}</p>
-{# 
-                    {% if is_granted('ROLE_ADMIN') %} #}
+
+                    {# {% if is_granted('ROLE_ADMIN') %} #}
                         <div id="add_produit" onclick='OpenAddModal()'>+</div>
-                    {# {% endif %} #}
+                    {# {% endif %}   #}
                 {% endif %}
             </div>
             
@@ -46,7 +46,8 @@
                             <a class='nav_logout' href="{{ path('app_logout') }}">{{ 'nav.deconnexion'| trans }}</a>
                         </div>
                 {% else %}
-                    <a href="{{ path('app_login') }}" id='login'>{{ 'connexion'| trans }}</a>
+                    <a href="{{ path('app_register') }}" id='register'>{{ 'nav.inscription'| trans }}</a>
+                    <a href="{{ path('app_login') }}" id='login'>{{ 'nav.connexion'| trans }}</a>
 				{% endif %}
 
                 <img id='basket_logo' src="{{ asset('img/basket.png')}}" alt="logo panier" onclick="OpenBasketModal()">
