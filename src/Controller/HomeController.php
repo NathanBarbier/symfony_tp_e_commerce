@@ -39,8 +39,11 @@ class HomeController extends AbstractController
             $panier = $user->getActivePanier();
         }
 
+        // on récupère les produits
         $produits = $this->em->getRepository(Produit::class)->findAll();
 
+        // on vérifie le role si il est bien admin
+        // on crée le formulaire de création d'un produit
         if ($this->isGranted('ROLE_ADMIN')) {
             $produit = new Produit();
             $form = $this->createForm(ProduitType::class, $produit);

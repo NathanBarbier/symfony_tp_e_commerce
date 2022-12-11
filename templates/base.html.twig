@@ -17,9 +17,7 @@
             <div id="logo_container">
                 <a href="{{ path('app_home') }}"><img id='audiophile_logo' src="{{ asset('img/audiophile.png')}}" alt="audiophile logo"></a>
                 {% if app.user and is_granted('ROLE_ADMIN') %}
-                    {# {% if is_granted('ROLE_ADMIN') %} #}
                         <div id="add_produit" onclick='OpenAddModal()'>+</div>
-                    {# {% endif %}   #}
                 {% endif %}
             </div>
             
@@ -42,7 +40,7 @@
                 {% if app.user %}
                         {% if is_granted('ROLE_SUPER_ADMIN') %}
                             <div class='div_modal_hover'>
-                                <a class='modal_btn' href="#">{{ 'nav.gestion'| trans }}</a>
+                                <a class='modal_btn' href="{{ path('app_dashboard') }}">{{ 'nav.gestion'| trans }}</a>
                             </div>
                         {% endif %}
                 {% endif %}
