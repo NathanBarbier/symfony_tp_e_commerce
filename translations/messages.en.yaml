@@ -1,21 +1,74 @@
+go_back: "Go Back"
 nav:
-  connexion: "login"
   accueil: "Home"
   casques: "Headphones"
   enceintes : "Speakers"
   ecouteurs: "Hearphones"
   gestion : "Back office"
   profil: "My profil"
-  deconnexion : "Logout"
-  inscription: "Register"
   bonjour: "Hello"
-modal:
-  ajout:
-   fermer: "Close"
-  panier: 
-   title: "My basket"
-   paiement: "Payment"
 footer:
   text: "Audiophile is an all in one stop to fulfill your audio needs. We're a small team of music loversand sound specialists who are devoted to helping you get the most out of personal audio. Come and visit our demo facility - we're open 7 days a week."
   copyright: "Copyright 2022. All Rights Reserved"
-produit.update.confirm: "The product has been updated"
+produit:
+  modification: "Update Product"
+  purchase: "The product has been added to your cart "
+  stock: "There are %stock% %nom% left in stock."
+  wrong_stock: "The stock entered is invalid"
+  out_of_stock: "This product is no longer in stock"
+  panier:
+    out_of_stock: "The product %produit% is no longer in stock"
+  update:
+    confirm: "The product has been updated"
+    canceled: "The product could not be updated"
+  introuvable: "Produit introuvable"
+  supprimé: "Product not found"
+panier:
+  introuvable: "Cart not found"
+  delete:
+    confirm: "The cart has been deleted"
+    canceled: "The basket could not be deleted"
+commande:
+  introuvable: "The order cannot be found"
+  success: "Thank you for your order"
+modal:
+  ajout:
+    fermer: "Close"
+  panier:
+    title: "My basket"
+    paiement: "Payment"
+account:
+  title: "My account - %nom% %prenom%"
+  account_title: "My account"
+  order_title: "My orders"
+  name: "Lastname:"
+  firstname: "Firstname:"
+  email: "Email:"
+  order:
+    id: "Id"
+    montant: "Amount"
+    date: "Date"
+    action: "Action"
+    empty: "You have no orders"
+    in_progress: "In Progress"
+    see: "Detail"
+    user: "User"
+    contenu: "Products in the cart"
+button:
+  update: "Update"
+user:
+  update:
+    confirm: "The basket has been deleted"
+    canceled: "The basket could not be deleted"
+  introuvable: "User not found"
+navbar:
+  my_account: "My Account"
+  register: "Sign Up"
+  login: "Log in"
+  logout: "Log out"
+not_allowed: "you are not authorized to access this page."
+dashboard:
+  panier:
+    titre: "List of current shopping carts"
+    contenu: "Product : %produit%, Quantity : %quantite%"
+

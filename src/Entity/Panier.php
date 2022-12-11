@@ -21,6 +21,7 @@ class Panier
     private ?User $utilisateur = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    #[Assert\DateTime]
     private ?\DateTimeInterface $date_achat = null;
 
     #[ORM\Column]

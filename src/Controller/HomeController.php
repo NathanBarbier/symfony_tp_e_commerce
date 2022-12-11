@@ -9,9 +9,11 @@ use App\Entity\User;
 use App\Form\ProduitType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[Route('{_locale}')]
@@ -19,13 +21,16 @@ class HomeController extends AbstractController
 {
     protected EntityManagerInterface $em;
     protected TranslatorInterface $translator;
+    protected SluggerInterface $slugger;
 
     public function __construct (
         EntityManagerInterface $em,
         TranslatorInterface $translator,
+        SluggerInterface $slugger,
     ) {
         $this->em = $em;
         $this->translator = $translator;
+        $this->slugger = $slugger;
     }
 
     #[Route('/', name: 'app_home')]
@@ -56,10 +61,42 @@ class HomeController extends AbstractController
             try {
                 $form->handleRequest($request);
                 if ($form->isSubmitted() && $form->isValid()) {
+                    $imageFile = $form->get('photo')->getData();
+
+                    // this condition is needed because the 'image' field is not required
+                    // so the PDF file must be processed only when a file is uploaded
+                    if ($imageFile) {
+                        $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                        // this is needed to safely include the file name as part of the URL
+                        $safeFilename = $this->slugger->slug($originalFilename);
+                        $newFilename = $safeFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
+
+                        // Move the file to the directory where images are stored
+                        try {
+                            $imageFile->move(
+                                $this->getParameter('upload_directory'),
+                                $newFilename
+                            );
+                        } catch (FileException $e) {
+                            // ... handle exception if something happens during file upload
+                            $this->addFlash('danger', "Impossible d'uploader le fichier");
+                            return $this->redirectToRoute('app_marque');
+                        }
+
+                        // updates the 'imageFilename' property to store the PDF file name
+                        // instead of its contents
+                        $produit->setPhoto($newFilename);
+                    }
                     $this->em->persist($produit);
                     $this->em->flush();
 
                     $this->addFlash('success', $this->translator->trans('produit.update.confirm'));
+
+                    $produit = new Produit();
+
+                    $form = $this->createForm(ProduitType::class, $produit, [
+                        'csrf_protection' => false, /** j'ai ajouté ça parce que sinon il me mettait une erreur au niveau du csrf */
+                    ]);
                 }
             } catch (\Exception $e) {
                 $this->addFlash('danger', $this->translator->trans('produit.update.canceled'));
