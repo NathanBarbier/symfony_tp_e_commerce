@@ -15,6 +15,8 @@ produit:
   stock: "Il reste %stock% %nom% en stock."
   wrong_stock: "Le stock renseigné est invalide"
   out_of_stock: "Ce produit n'est plus en stock"
+  panier:
+    out_of_stock: "Le produit %produit% n'est plus en stock"
   update:
     confirm: "le produit a été mise à jour"
     canceled: "le produit n'a pas pu être mis à jour"
