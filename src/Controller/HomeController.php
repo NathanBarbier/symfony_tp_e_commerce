@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Categorie;
 use App\Entity\Panier;
 use App\Entity\Produit;
 use App\Entity\User;
@@ -32,7 +33,7 @@ class HomeController extends AbstractController
         Request $request,
     ): Response {
 
-        $panier = null;
+        $panier = new Panier();
         /** @var User $user */
         if (null !== $user = $this->getUser()) {
             /** @var Panier $panier */
@@ -41,6 +42,7 @@ class HomeController extends AbstractController
 
         // on récupère les produits
         $produits = $this->em->getRepository(Produit::class)->findAll();
+        $categorie = $this->em->getRepository(Categorie::class)->findAll();
 
         // on vérifie le role si il est bien admin
         // on crée le formulaire de création d'un produit
@@ -70,6 +72,7 @@ class HomeController extends AbstractController
             'form' => $form,
             'produits' => $produits,
             'utilisateur' => $user,
+            'categorie' => $categorie,
         ]);
     }
 }

@@ -2,17 +2,21 @@
 
 namespace App\Controller;
 
+use App\Entity\Categorie;
+use App\Entity\Panier;
 use App\Entity\Produit as EntityProduit;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('{_locale}/categorie')]
-class CateogrieController extends AbstractController
+class CategorieController extends AbstractController
 {
-    #[Route('/', name: 'app_cateogrie')]
-    public function index(EntityProduit $produit = null): Response
+    #[Route('/{id}', name: 'app_categorie')]
+    public function index(Categorie $categorie,): Response
     {
+        $panier = new Panier();
+
         /** Si l'utilisateur est connecté on récupère son panier */
         /** @var User $user */
         if (null !== $user = $this->getUser()) {
@@ -20,9 +24,10 @@ class CateogrieController extends AbstractController
             $panier = $user->getActivePanier();
         }
 
-        return $this->render('cateogrie/index.html.twig', [
+        return $this->render('categorie/categorie.html.twig', [
             'panier' => $panier,
-            'produit' => $produit,
+            'categorie' => $categorie,
+            'utilisateur' => $user,
         ]);
     }
 }

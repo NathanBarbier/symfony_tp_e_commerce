@@ -16,17 +16,21 @@
         <nav>
             <div id="logo_container">
                 <a href="{{ path('app_home') }}"><img id='audiophile_logo' src="{{ asset('img/audiophile.png')}}" alt="audiophile logo"></a>
-                {% if app.user and is_granted('ROLE_ADMIN') %}
+                {% if app.user %}
+                   <p class='user_name'>{{ 'nav.bonjour'| trans}} {{app.user.nom|capitalize}}</p>
+
+                    {% if is_granted('ROLE_ADMIN') %}
                         <div id="add_produit" onclick='OpenAddModal()'>+</div>
+                    {% endif %}
                 {% endif %}
             </div>
             
             <div id="nav_link_container">
                 <ul>
                     <li><a class="nav_link" href="{{ path('app_home') }}">{{ 'nav.accueil'| trans }}</a></li>
-                    <li><a class="nav_link" href="{{ path('app_home') }}">{{ 'nav.casques'| trans }}</a></li>
-                    <li><a class="nav_link" href="{{ path('app_home') }}">{{ 'nav.enceintes'| trans }}</a></li>
-                    <li><a class="nav_link" href="{{ path('app_home') }}">{{ 'nav.ecouteurs'| trans }}</a></li>
+                    <li><a class="nav_link" href="{{ path('app_categorie', {'id': 2 }) }}">{{ 'nav.casques'| trans }}</a></li>
+                    <li><a class="nav_link" href="{{ path('app_categorie', {'id': 3 }) }}">{{ 'nav.enceintes'| trans }}</a></li>
+                    <li><a class="nav_link" href="{{ path('app_categorie', {'id': 1 }) }}">{{ 'nav.ecouteurs'| trans }}</a></li>
                     {% if utilisateur != null %}
                         <li><a class="nav_link" href="{{ path('app_account', {'id': utilisateur.id}) }}">{{ 'navbar.my_account'|trans }}</a></li>
                         <li><a class="nav_link" href="{{ path('app_logout') }}">{{ 'navbar.logout'|trans }}</a></li>
@@ -49,16 +53,33 @@
             </div>
         </nav>
     </header>
-
     <div id="basket_modal">
         <div id='basket_close' onclick='closeBasketBasket()'>
             <p>{{ 'modal.ajout.fermer'| trans }}</p> 
         </div>
-        <div id="basket">
-            panier ici
+        <div id="basket_container">
+            <h5 id='basket_h5'>{{ 'modal.panier.title'| trans }}</h5>
+            
+            {% if panier is not null and panier.contenuPaniers is not empty %}
+                {% for i in panier.contenuPaniers %}
+                    <div class='item'>
+                        <p class="item_name">{{i.produit.nom}}</p>
+                        <div class="item_description">
+                            <p class="item_qte">Quantité : {{i.quantite}}</p>
+                            <p class="item_price">Prix : {{i.produit.prix}}€</p>
+                            <a href="{{ path('app_deleteContenu', {'id': i.id}) }}">
+                                <img id="trash_icon" src='{{ asset('img/trash.png') }}' alt="trash_icon">
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+                <a href='{{ path('app_paiement', {'id': panier.id}) }}' id='paiement_btn'>{{ 'Paiement'| trans }}</a>
+            {% else %}
+                <p>Panier vide</p>
+            {% endif %}
+
         </div>
     </div>
-    <div class="head_flash"></div>
     {%  for type, message in app.flashes %}
         {% for msg in message %}
             <p class="m-0 alert custom-alert alert-{{ type }}">{{ type }} : {{ msg }}</p>

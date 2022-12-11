@@ -27,10 +27,13 @@ panier:
      canceled: "le panier n'a pas pu être supprimé"
 commande:
   introuvable: "La commande est introuvable"
+  success: "Merci pour votre commande"
 modal:
   ajout:
     fermer: "Fermer"
   panier:
+   title: "Mon panier"
+   paiement: "Paiement"
 account:
   title: "Mon compte - %nom% %prenom%"
   account_title: "Mon compte"

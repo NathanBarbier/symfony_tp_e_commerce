@@ -85,6 +85,17 @@ class ContenuPanierController extends AbstractController
         return $this->redirectToRoute('app_home');
     }
 
+    #[Route('/delete/{id}', name: 'app_deleteContenu')]
+    public function deleteContenu(ContenuPanier $contenuPanier = null){
+        if(!$contenuPanier || null === $this->getUser() || $contenuPanier->getPanier()->getUtilisateur() !== $this->getUser()){
+            return $this->redirectToRoute('app_home');
+        }
+        
+        $this->em->remove($contenuPanier);
+        $this->em->flush();
+        return $this->redirectToRoute('app_home');
+    }
+
     protected function createPanier($user): Panier {
         $panier = new Panier();
         $panier->setEtat(false);
@@ -93,4 +104,5 @@ class ContenuPanierController extends AbstractController
         $this->em->persist($panier);
         return $panier;
     }
+
 }

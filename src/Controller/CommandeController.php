@@ -23,19 +23,22 @@ class CommandeController extends AbstractController
         $this->translator = $translator;
     }
 
-    #[Route('/show/{id}', name: 'app_commande')]
-    public function index(Panier $panier = null): Response
-    {
-        // si le panier n'exste pas on redirige
+    // On passe la commande/panier en "acheté"
+    #[Route('/paiement/{id}', name: 'app_paiement')]
+    public function paiement(Panier $panier = null)
+    {   
         if (null === $panier) {
             $this->addFlash('warning', $this->translator->trans('commande.introuvable'));
             return $this->redirectToRoute('app_home');
         }
 
+        $panier->setDateAchat(new \DateTime());
+        $panier->setEtat(1);
+        $this->em->persist($panier);
+        $this->em->flush();
 
-        return $this->render('commande/index.html.twig', [
-            'panier' => $panier,
-            'utilisateur' => $this->getUser(),
-        ]);
+
+        $this->addFlash('success', $this->translator->trans('commande.success'));
+        return $this->redirectToRoute('app_home');
     }
 }
