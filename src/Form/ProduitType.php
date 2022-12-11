@@ -43,6 +43,7 @@ class ProduitType extends AbstractType
                     ])
                 ],
             ])
+            ->add('categories')
             ->add('save', SubmitType::class)
         ;
     }
