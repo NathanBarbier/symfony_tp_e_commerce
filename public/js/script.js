@@ -41,8 +41,8 @@ function addOne(){
     let span_qte = document.querySelector('#span_qte').innerHTML
 
     if(count < span_qte){
-        document.querySelector('#count').value = count
         count = ++count
+        document.querySelector('#count').value = count
     }
 }
 
