@@ -1,3 +1,4 @@
+go_back: "Retour"
 nav:
   connexion: "Connexion"
   accueil: "Accueil"
@@ -13,6 +14,9 @@ footer:
   text: "Audiophile est un guichet unique pour répondre à vos besoins en matière d'audio. Nous sommes une petite équipe de mélomanes et de spécialistes du son qui se consacrent à vous aider à tirer le meilleur parti de votre système audio personnel. Venez visiter notre centre de démonstration - nous sommes ouverts 7 jours sur 7."
   copyright: "Copyright 2021. Tous droits réservés"  
 produit:
+  purchase: "Le produit a bien été ajouté au panier"
+  stock: "Il reste %stock% %nom% en stock."
+  wrong_stock: "Le stock renseigné est invalide"
   out_of_stock: "Ce produit n'est plus en stock"
   update:
     confirm: "le produit a été mise à jour"
@@ -37,7 +41,8 @@ account:
   name: "Nom:"
   firstname: "Prenom:"
   email: "Email:"
-  button: "Mettre à jour"
+button:
+  update: "Mettre à jour"
   order:
     id: "Id"
     montant: "Montant"
@@ -53,4 +58,5 @@ user:
   introuvable: "Utilisateur introuvable"
 navbar:
   my_account: "Mon compte"
-  register: "Se connecter"
+  register: "S'inscrire"
+  login: "Se connecter"

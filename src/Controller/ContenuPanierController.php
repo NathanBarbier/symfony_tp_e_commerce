@@ -77,6 +77,9 @@ class ContenuPanierController extends AbstractController
 
             $this->em->persist($contenuPanier);
             $this->em->flush();
+
+            $this->addFlash('success', $this->translator->trans('produit.purchase'));
+
         }
 
         return $this->redirectToRoute('app_home');
