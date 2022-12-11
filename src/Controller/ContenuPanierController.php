@@ -27,7 +27,7 @@ class ContenuPanierController extends AbstractController
     }
 
     #[Route('/create/{id}', name: 'create_contenu_panier')]
-    public function create(Request $request, Produit $produit = null): Response
+    public function create(Produit $produit = null): Response
     {
         /** redirection avec message si le produit n'existe pas */
         if (null === $produit) {
