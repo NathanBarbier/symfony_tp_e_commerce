@@ -136,6 +136,7 @@ class ProduitController extends AbstractController
             $this->em->flush();
         } catch (\Exception $e) {
             $this->addFlash('danger', $e->getMessage());
+            return $this->redirectToRoute('app_home');
         }
 
         $this->addFlash('success', $this->translator->trans('produit.supprimé'));

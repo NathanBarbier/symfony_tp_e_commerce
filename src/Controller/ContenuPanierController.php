@@ -73,8 +73,6 @@ class ContenuPanierController extends AbstractController
                 $contenuPanier->setProduit($produit);
             }
 
-            $produit->setStock($produit->getStock() - 1);
-
             $this->em->persist($contenuPanier);
             $this->em->flush();
 
