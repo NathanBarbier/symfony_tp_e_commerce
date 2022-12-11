@@ -69,6 +69,7 @@ class ProduitController extends AbstractController
             'panier' => $panier,
             'produit' => $produit,
             'form' => $form,
+            'utilisateur' => $user
         ]);
     }
 
