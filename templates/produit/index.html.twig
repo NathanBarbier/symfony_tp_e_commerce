@@ -22,7 +22,7 @@
 
                 <div class='priceStock'>
                     <p class="Article_price">$ {{ produit.prix | number_format }}</p>
-                    <p id="Article_qte">Il reste <span id='span_qte'>{{ produit.stock }}</span> {{ produit.nom }} en stock.</p>
+                    <p id="Article_qte">Il reste <span id='span_qte'>{{ produit.stock }}</span> {{ produit.nom }}s en stock.</p>
                 </div>
 
                 <form action="{{ path('create_contenu_panier', {'id': produit.id}) }}" method='post'>
