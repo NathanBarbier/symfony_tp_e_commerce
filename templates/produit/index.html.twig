@@ -3,6 +3,8 @@
 {% block title %}Hello ProduitController!{% endblock %}
 
 {% block body %}
+
+    <div class="head_produit"></div>
     <main>
         {% if form is not empty %}
             {{ form_start(form) }}
@@ -33,7 +35,7 @@
         
         <div class="article_container">
         <div id='back_container'>
-           <a href='{{ path('app_home') }}' class='GoBack'>{{ 'go_back'|trans }}</a>
+           <a href='{{ path('app_home') }}' class='GoBack'><-{{ 'go_back'|trans }}</a>
         </div>
         <div class="article_container_inner">
             <div class="article_img">

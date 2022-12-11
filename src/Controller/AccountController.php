@@ -28,6 +28,8 @@ class AccountController extends AbstractController
     #[Route('/show/{id}', name: 'app_account')]
     public function index(User $user = null): Response
     {
+        $panier = new Panier();
+
         /** redirection avec message si le user n'existe pas */
         if (null === $user) {
             $this->addFlash('warning', $this->translator->trans('user.introuvable'));

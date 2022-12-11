@@ -6,9 +6,6 @@ nav:
   enceintes : "Enceintes"
   ecouteurs: "Ecouteurs"
   gestion : "Gestion"
-  profil: "Mon profil"
-  deconnexion : "Deconnexion"
-  inscription: "S'inscrire"
   bonjour: "Bonjour"
 footer:
   text: "Audiophile est un guichet unique pour répondre à vos besoins en matière d'audio. Nous sommes une petite équipe de mélomanes et de spécialistes du son qui se consacrent à vous aider à tirer le meilleur parti de votre système audio personnel. Venez visiter notre centre de démonstration - nous sommes ouverts 7 jours sur 7."
@@ -30,10 +27,13 @@ panier:
      canceled: "le panier n'a pas pu être supprimé"
 commande:
   introuvable: "La commande est introuvable"
+  success: "Merci pour votre commande"
 modal:
   ajout:
     fermer: "Fermer"
   panier:
+   title: "Mon panier"
+   paiement: "Paiement"
 account:
   title: "Mon compte - %nom% %prenom%"
   account_title: "Mon compte"
@@ -41,8 +41,6 @@ account:
   name: "Nom:"
   firstname: "Prenom:"
   email: "Email:"
-button:
-  update: "Mettre à jour"
   order:
     id: "Id"
     montant: "Montant"
@@ -51,6 +49,10 @@ button:
     empty: "Vous n'avez aucune commande"
     in_progress: "En Cours"
     see: "Détails"
+    user: "Utilisateur"
+    contenu: "Les produit du panier"
+button:
+  update: "Mettre à jour"
 user:
   update:
     confirm: "le panier a été supprimé"
@@ -60,3 +62,9 @@ navbar:
   my_account: "Mon compte"
   register: "S'inscrire"
   login: "Se connecter"
+  logout: "Se déconnecter"
+not_allowed: "vous n'êtes pas autorisé à accéder à cette page."
+dashboard:
+  panier:
+    titre: "Liste des paniers en cours"
+    contenu: "Produit : %produit%, Quantite : %quantite%"

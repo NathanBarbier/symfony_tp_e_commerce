@@ -78,7 +78,6 @@
                             {% set montant = 0 %}
                             {% for contenuPanier in panier.ContenuPaniers %}
                                 {% set montant = montant + contenuPanier.produit.prix %}
-                                {% dump(montant) %}
                             {% endfor %}
                             <tr>
                                 <th>{{ panier.id }}</th>
