@@ -5,11 +5,16 @@ namespace App\Controller;
 use App\Entity\Panier;
 use App\Entity\Produit;
 use App\Entity\User;
+use App\Entity\ContenuPanier;
 use App\Form\ProduitType;
+use App\Form\ContenuPanierType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[Route('{_locale}/produit')]
@@ -17,13 +22,16 @@ class ProduitController extends AbstractController
 {
     protected EntityManagerInterface $em;
     protected TranslatorInterface $translator;
+    protected SluggerInterface $slugger;
 
     public function __construct (
         EntityManagerInterface $em,
         TranslatorInterface $translator,
+        SluggerInterface $slugger,
     ) {
         $this->em = $em;
         $this->translator = $translator;
+        $this->slugger = $slugger;
     }
 
     /**
@@ -31,7 +39,7 @@ class ProduitController extends AbstractController
      * elle permet également l'update du produit si l'utilisateur est ADMIN.
      */
     #[Route('/show/{id}', name: 'app_produit')]
-    public function index(Produit $produit = null): Response
+    public function index(Request $request, Produit $produit = null): Response
     {
         /** redirection avec message si le produit n'existe pas */
         if (null === $produit) {
@@ -40,6 +48,7 @@ class ProduitController extends AbstractController
         }
 
         $form = "";
+        $panier = "";
 
         /** Si l'utilisateur est connecté on récupère son panier */
         /** @var User $user */
@@ -50,10 +59,41 @@ class ProduitController extends AbstractController
 
         /** si le user est admin on crèe le form de modification. */
         if ($this->isGranted('ROLE_ADMIN')) {
-            $form = $this->createForm(ProduitType::class, $produit);
+            $form = $this->createForm(ProduitType::class, $produit, [
+                'csrf_protection' => false, /** j'ai ajouté ça parce que sinon il me mettait une erreur au niveau du csrf */
+            ]);
 
             try {
+                $form->handleRequest($request);
                 if ($form->isSubmitted() && $form->isValid()) {
+
+                    $imageFile = $form->get('photo')->getData();
+
+                    // this condition is needed because the 'image' field is not required
+                    // so the PDF file must be processed only when a file is uploaded
+                    if ($imageFile) {
+                        $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                        // this is needed to safely include the file name as part of the URL
+                        $safeFilename = $this->slugger->slug($originalFilename);
+                        $newFilename = $safeFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
+
+                        // Move the file to the directory where images are stored
+                        try {
+                            $imageFile->move(
+                                $this->getParameter('upload_directory'),
+                                $newFilename
+                            );
+                        } catch (FileException $e) {
+                            // ... handle exception if something happens during file upload
+                            $this->addFlash('danger', "Impossible d'uploader le fichier");
+                            return $this->redirectToRoute('app_marque');
+                        }
+
+                        // updates the 'imageFilename' property to store the PDF file name
+                        // instead of its contents
+                        $produit->setPhoto($newFilename);
+                    }
+
                     $this->em->persist($produit);
                     $this->em->flush();
 
@@ -69,6 +109,7 @@ class ProduitController extends AbstractController
             'panier' => $panier,
             'produit' => $produit,
             'form' => $form,
+            'utilisateur' => $user
         ]);
     }
 

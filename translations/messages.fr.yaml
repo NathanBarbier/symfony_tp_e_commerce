@@ -1,4 +1,23 @@
+go_back: "Retour"
+nav:
+  connexion: "Connexion"
+  accueil: "Accueil"
+  casques: "Casques"
+  enceintes : "Enceintes"
+  ecouteurs: "Ecouteurs"
+  gestion : "Gestion"
+  profil: "Mon profil"
+  deconnexion : "Deconnexion"
+  inscription: "S'inscrire"
+  bonjour: "Bonjour"
+footer:
+  text: "Audiophile est un guichet unique pour répondre à vos besoins en matière d'audio. Nous sommes une petite équipe de mélomanes et de spécialistes du son qui se consacrent à vous aider à tirer le meilleur parti de votre système audio personnel. Venez visiter notre centre de démonstration - nous sommes ouverts 7 jours sur 7."
+  copyright: "Copyright 2021. Tous droits réservés"  
 produit:
+  purchase: "Le produit a bien été ajouté au panier"
+  stock: "Il reste %stock% %nom% en stock."
+  wrong_stock: "Le stock renseigné est invalide"
+  out_of_stock: "Ce produit n'est plus en stock"
   update:
     confirm: "le produit a été mise à jour"
     canceled: "le produit n'a pas pu être mis à jour"
@@ -11,3 +30,33 @@ panier:
      canceled: "le panier n'a pas pu être supprimé"
 commande:
   introuvable: "La commande est introuvable"
+modal:
+  ajout:
+    fermer: "Fermer"
+  panier:
+account:
+  title: "Mon compte - %nom% %prenom%"
+  account_title: "Mon compte"
+  order_title: "Mes commandes"
+  name: "Nom:"
+  firstname: "Prenom:"
+  email: "Email:"
+button:
+  update: "Mettre à jour"
+  order:
+    id: "Id"
+    montant: "Montant"
+    date: "Date"
+    action: "Action"
+    empty: "Vous n'avez aucune commande"
+    in_progress: "En Cours"
+    see: "Détails"
+user:
+  update:
+    confirm: "le panier a été supprimé"
+    canceled: "le panier n'a pas pu être supprimé"
+  introuvable: "Utilisateur introuvable"
+navbar:
+  my_account: "Mon compte"
+  register: "S'inscrire"
+  login: "Se connecter"

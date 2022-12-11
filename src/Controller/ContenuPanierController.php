@@ -26,7 +26,7 @@ class ContenuPanierController extends AbstractController
         $this->translator = $translator;
     }
 
-    #[Route('/create/{produit}', name: 'create_contenu_panier')]
+    #[Route('/create/{id}', name: 'create_contenu_panier')]
     public function create(Produit $produit = null): Response
     {
         /** redirection avec message si le produit n'existe pas */
@@ -37,12 +37,18 @@ class ContenuPanierController extends AbstractController
 
         /**
          * on vérifie si l'utilisateur est connecté
+         * si le produit a stock a 0 on flash une erreur
          * on regarde si il a un panier en cours, si non on en crée un si oui on le met à jour
          * si le contenuPanier est déjà lié a un produit dans le panier on le met à jour
          * sinon on crèe un nouveau contenuPanier
          */
         /** @var User $user */
         if (null !== $user = $this->getUser()) {
+            if ($produit->getStock() === 0) {
+                $this->addFlash('danger', $this->translator->trans('produit.out_of_stock'));
+                return $this->redirectToRoute('app_home');
+            }
+
             /** @var Panier $panier */
             $panier = $user->getActivePanier();
 
@@ -51,22 +57,29 @@ class ContenuPanierController extends AbstractController
             }
 
             $contenuPanier = $this->em->getRepository(ContenuPanier::class)->findOneBy([
-                "panier" => $panier,
+                "Panier" => $panier,
                 "produit" => $produit
             ]);
 
             if (null !== $contenuPanier) {
                 $contenuPanier->setQuantite($contenuPanier->getQuantite() + 1);
                 $contenuPanier->setDate(new \DateTimeImmutable());
+                $contenuPanier->setProduit($produit);
             } else {
                 $contenuPanier = new ContenuPanier();
                 $contenuPanier->setQuantite(1);
                 $contenuPanier->setDate(new \DateTimeImmutable());
                 $contenuPanier->setPanier($panier);
+                $contenuPanier->setProduit($produit);
             }
+
+            $produit->setStock($produit->getStock() - 1);
 
             $this->em->persist($contenuPanier);
             $this->em->flush();
+
+            $this->addFlash('success', $this->translator->trans('produit.purchase'));
+
         }
 
         return $this->redirectToRoute('app_home');

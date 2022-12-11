@@ -33,6 +33,7 @@ class CommandeController extends AbstractController
 
         return $this->render('commande/index.html.twig', [
             'panier' => $panier,
+            'utilisateur' => $this->getUser(),
         ]);
     }
 }
