@@ -48,7 +48,7 @@ class ProduitController extends AbstractController
         }
 
         $form = "";
-        $panier = "";
+        $panier = new Panier();
 
         /** Si l'utilisateur est connecté on récupère son panier */
         /** @var User $user */
