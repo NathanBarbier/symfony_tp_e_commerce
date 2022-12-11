@@ -46,7 +46,7 @@
                 {% if app.user %}
                         {% if is_granted('ROLE_SUPER_ADMIN') %}
                             <div class='div_modal_hover'>
-                                <a class='modal_btn' href="{{ path('app_dashboard') }}">{{ 'nav.gestion'| trans }}</a>
+                                <a class='modal_btn' id="login" href="{{ path('app_dashboard') }}">{{ 'nav.gestion'| trans }}</a>
                             </div>
                         {% endif %}
                 {% endif %}
