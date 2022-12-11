@@ -1,20 +1,105 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AccountController!{% endblock %}
+{% block title %} {{ 'account.title'|trans({'%nom%' : utilisateur.nom, '%prenom%' : utilisateur.prenom }) }} {% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <div class="main-account">
+        <div class="account-info-user">
+            <div class="main_account_title">
+                <h1>{{ 'account.account_title'|trans }}</h1>
+            </div>
+            <div class="petit_bonhomme">
+                <img src="{{ asset('img/account/petit_bonhomme.png') }}" alt="" style="width: 100px; height: 150px">
+            </div>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+            <div class="container">
+                {{ form_start(form) }}
+                <div class="form-group w-75 m-auto">
+                    <div class="row pt-5">
+                        <div class="col-2 pt-1">
+                            <h3 class="label-custom">{{ 'account.name'|trans }}</h3>
+                        </div>
+                        <div class="col-10">
+                            {{ form_widget(form.nom, {'attr': {'class': 'form-control input-custom'}}) }}
+                        </div>
+                    </div>
+                    <div class="row pt-5">
+                        <div class="col-2 pt-1">
+                            <h3 class="label-custom">{{ 'account.firstname'|trans }}</h3>
+                        </div>
+                        <div class="col-10">
+                            {{ form_widget(form.prenom, {'attr': {'class': 'form-control input-custom'}}) }}
+                        </div>
+                    </div>
+                    <div class="row pt-5">
+                        <div class="col-2 pt-1">
+                            <h3 class="label-custom">{{ 'account.email'|trans }}</h3>
+                        </div>
+                        <div class="col-10">
+                            {{ form_widget(form.email, {'attr': {'class': 'form-control input-custom'}}) }}
+                        </div>
+                    </div>
+                    <div class="row pt-5">
+                        <div class="col">
+                            <button type="submit" class="btn btn-secondary">{{ 'account.button'|trans }}</button>
+                        </div>
+                    </div>
+                </div>
+                {{ form_end(form, {render_rest: false}) }}
+            </div>
+        </div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/blorgue/www/symfony_tp_e_commerce/src/Controller/AccountController.php'|file_link(0) }}">src/Controller/AccountController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/blorgue/www/symfony_tp_e_commerce/templates/account/index.html.twig'|file_link(0) }}">templates/account/index.html.twig</a></code></li>
-    </ul>
-</div>
+
+        <div class="account-info-orders">
+            <div class="main_order_title">
+                <h1>{{ 'account.order_title'|trans }}</h1>
+            </div>
+
+            <div class="camion">
+                <img src="{{ asset('img/account/camion.png') }}" alt="" style="width: 200px; height: 120px">
+            </div>
+
+        {% if paniers is empty %}
+            <h2>{{ 'account.order.empty'|trans }}</h2>
+        {% else %}
+            <p></p>
+            <div class="container">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>{{ 'account.order.id'|trans }}</th>
+                        <th>{{ 'account.order.montant'|trans }}</th>
+                        <th>{{ 'account.order.date'|trans }}</th>
+                        <th>{{ 'account.order.action'|trans }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for panier in paniers %}
+                            {% set montant = 0 %}
+                            {% for contenuPanier in panier.ContenuPaniers %}
+                                {% set montant = montant + contenuPanier.produit.prix %}
+                                {% dump(montant) %}
+                            {% endfor %}
+                            <tr>
+                                <th>{{ panier.id }}</th>
+                                <th>{{ montant }}</th>
+                                {% if panier.etat == false %}
+                                    <th>{{ 'account.order.in_progress'|trans }}</th>
+                                    <th>
+                                        <a href="#">...</a>
+                                    </th>
+                                {% else %}
+                                    <th>{{ panier.dateAchat|date('Y:m:d') }}</th>
+                                    <th>
+                                        <a href="#">{{ 'account.order.see'|trans }}</a>
+                                    </th>
+                                {% endif %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+        </div>
+    </div>
 {% endblock %}

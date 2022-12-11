@@ -61,7 +61,7 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig', [
             'panier' => $panier,
             'produits' => $produits,
-            'controller_name' => 'HomeController',
+            'utilisateur' => $user,
         ]);
     }
 }
