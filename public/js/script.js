@@ -35,24 +35,23 @@ function closeBasketBasket() {
 }
 
 
-//  Compteur de la qte pour ajouter au panier
+//  Compteur de la qte pour ajouter 1 au panier
 function addOne(){
     let count = document.querySelector('#count').value
     let span_qte = document.querySelector('#span_qte').innerHTML
 
     if(count < span_qte){
-    count = ++count
-    document.querySelector('#count').value = count
-    console.log(count);
+        document.querySelector('#count').value = count
+        count = ++count
     }
 }
 
+//  Compteur de la qte pour retirer 1 au panier
 function removeOne() {
     let count = document.querySelector('#count').value
 
     if(count > 1){
-    count = --count
-    document.querySelector('#count').value = count
-    console.log(count);
+        count = --count
+        document.querySelector('#count').value = count
     }
 }

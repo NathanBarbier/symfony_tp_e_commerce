@@ -8,6 +8,7 @@ nav:
   profil: "My profil"
   deconnexion : "Logout"
   inscription: "Register"
+  bonjour: "Hello"
 modal:
   ajout:
     fermer: "Close"
