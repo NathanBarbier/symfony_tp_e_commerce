@@ -8,6 +8,7 @@ use App\Entity\Produit;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -27,7 +28,7 @@ class ContenuPanierController extends AbstractController
     }
 
     #[Route('/create/{id}', name: 'create_contenu_panier')]
-    public function create(Produit $produit = null): Response
+    public function create(Request $request, Produit $produit = null): Response
     {
         /** redirection avec message si le produit n'existe pas */
         if (null === $produit) {
@@ -77,6 +78,9 @@ class ContenuPanierController extends AbstractController
 
             $this->em->persist($contenuPanier);
             $this->em->flush();
+
+            $this->addFlash('success', $this->translator->trans('produit.purchase'));
+
         }
 
         return $this->redirectToRoute('app_home');

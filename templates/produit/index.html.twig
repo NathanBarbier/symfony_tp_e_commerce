@@ -3,17 +3,41 @@
 {% block title %}Hello ProduitController!{% endblock %}
 
 {% block body %}
-    <div class="head_produit"></div>
-
     <main>
+        {% if form is not empty %}
+            {{ form_start(form) }}
+                <div class="row mt-3">
+                    <div class="col-4">
+                        {{ form_row(form.nom, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="col-4">
+                        {{ form_row(form.prix, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="col-4">
+                        {{ form_row(form.stock, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+                <div class="row mt-3 mb-3">
+                    <div class="col-6">
+                        {{ form_row(form.description, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="col-4">
+                        {{ form_row(form.photo, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="col-2 mt-4">
+                        {{ form_row(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
+                    </div>
+                </div>
+            {{ form_end(form, {render_rest: false}) }}
+        {% endif %}
         
         <div class="article_container">
         <div id='back_container'>
-           <a href='{{ path('app_home') }}' class='GoBack'><- Go back</a>
+           <a href='{{ path('app_home') }}' class='GoBack'>{{ 'go_back'|trans }}</a>
         </div>
         <div class="article_container_inner">
             <div class="article_img">
-                <img src="{{ asset('img/desktop/image-product.jpg') }}" alt="">
+                <img src="{{ asset('/uploads/image/' ~ produit.photo) }}" alt="">
             </div>
             <div class="desc_container">
                 <div class="new P">New product</div>
@@ -22,16 +46,12 @@
 
                 <div class='priceStock'>
                     <p class="Article_price">$ {{ produit.prix | number_format }}</p>
-                    <p id="Article_qte">Il reste <span id='span_qte'>{{ produit.stock }}</span> {{ produit.nom }} en stock.</p>
+                    <span id='span_qte' style="display: none">{{ produit.stock }}</span>
+                    <p id="Article_qte">{{ 'produit.stock'|trans({'%stock%': produit.stock, '%nom%': produit.nom }) }}</p>
                 </div>
 
                 <form action="{{ path('create_contenu_panier', {'id': produit.id}) }}" method='post'>
                     <div class="add_cart">
-                        <div class="counter">
-                            <div id='less' class="count_btn less" onclick='removeOne()'>-</div>
-                            <input id='count' class="count_btn count" value='1' type="text" disabled>
-                            <div id='more' class="count_btn more" onclick='addOne()'>+</div>
-                        </div>
                         <button type='submit' class="add_btn">
                             Add to cart
                         </button>

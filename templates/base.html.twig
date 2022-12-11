@@ -27,7 +27,7 @@
                     {% if utilisateur != null %}
                         <li><a class="nav_link" href="{{ path('app_account', {'id': utilisateur.id}) }}">{{ 'navbar.my_account'|trans }}</a></li>
                     {% else %}
-                        <li><a class="nav_link" href="{{ path('app_register') }}">{{ 'navbar.register'|trans }}</a></li>
+                        <li><a class="nav_link" href="{{ path('app_login') }}">{{ 'navbar.login'|trans }}</a></li>
                     {% endif %}
                 </ul>
             </div>

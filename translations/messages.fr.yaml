@@ -1,4 +1,8 @@
+go_back: "Retour"
 produit:
+  purchase: "Le produit a bien été ajouté au panier"
+  stock: "Il reste %stock% %nom% en stock."
+  wrong_stock: "Le stock renseigné est invalide"
   out_of_stock: "Ce produit n'est plus en stock"
   update:
     confirm: "le produit a été mise à jour"
@@ -19,7 +23,8 @@ account:
   name: "Nom:"
   firstname: "Prenom:"
   email: "Email:"
-  button: "Mettre à jour"
+button:
+  update: "Mettre à jour"
   order:
     id: "Id"
     montant: "Montant"
@@ -35,4 +40,5 @@ user:
   introuvable: "Utilisateur introuvable"
 navbar:
   my_account: "Mon compte"
-  register: "Se connecter"
+  register: "S'inscrire"
+  login: "Se connecter"
