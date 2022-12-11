@@ -922,4 +922,11 @@ footer {
   text-align: center;
 }
 
+.alert {
+  position: absolute !important;
+  top: 10vh !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+}
+
 
