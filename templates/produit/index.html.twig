@@ -46,8 +46,8 @@
 
                 <div class='priceStock'>
                     <p class="Article_price">$ {{ produit.prix | number_format }}</p>
-                    <span id='span_qte' style="display: none">{{ produit.stock }}</span>
                     <p id="Article_qte">{{ 'produit.stock'|trans({'%stock%': produit.stock, '%nom%': produit.nom }) }}</p>
+
                 </div>
 
                 <form action="{{ path('create_contenu_panier', {'id': produit.id}) }}" method='post'>
