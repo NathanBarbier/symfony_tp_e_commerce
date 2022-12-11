@@ -32,6 +32,18 @@ class CommandeController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
 
+        foreach ($panier->getContenuPaniers() as $contenuPanier) {
+            $produit = $contenuPanier->getProduit();
+
+            if ($produit->getStock() < $contenuPanier->getQuantite()) {
+                $this->addFlash('warning', $this->translator->trans('produit.panier.out_of_stock', ['%produit%' => $produit->getNom()]));
+
+                return $this->redirectToRoute('app_home');
+            }
+
+            $produit->setStock($produit->getStock() - $contenuPanier->getQuantite());
+        }
+
         $panier->setDateAchat(new \DateTime());
         $panier->setEtat(1);
         $this->em->persist($panier);

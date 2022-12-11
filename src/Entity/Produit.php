@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Produit
 {
     #[ORM\Id]
@@ -110,6 +111,13 @@ class Produit
         $this->photo = $photo;
 
         return $this;
+    }
+
+    #[ORM\PostRemove]
+    public function deleteImage():void {
+        if (null != $this->photo) {
+            unlink(__DIR__.'/../../public/uploads/image/'.$this->photo);
+        }
     }
 
     /**
