@@ -1,3 +1,15 @@
+nav:
+  connexion: "connexion"
+  accueil: "Accueil"
+  casques: "Casques"
+  enceintes : "Enceintes"
+  ecouteurs: "Ecouteur"
+  gestion : "Gestion"
+  profil: "Mon profil"
+  deconnexion : "Deconnexion"
+footer:
+  text: "Audiophile est un guichet unique pour répondre à vos besoins en matière d'audio. Nous sommes une petite équipe de mélomanes et de spécialistes du son qui se consacrent à vous aider à tirer le meilleur parti de votre système audio personnel. Venez visiter notre centre de démonstration - nous sommes ouverts 7 jours sur 7."
+  copyright: "Copyright 2021. Tous droits réservés"  
 produit:
   update:
     confirm: "le produit a été mise à jour"
@@ -11,3 +23,7 @@ panier:
      canceled: "le panier n'a pas pu être supprimé"
 commande:
   introuvable: "La commande est introuvable"
+modal:
+  ajout:
+    fermer: "Fermer"
+  panier:
