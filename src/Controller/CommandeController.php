@@ -22,6 +22,7 @@ class CommandeController extends AbstractController
         $this->em = $em;
         $this->translator = $translator;
     }
+
     #[Route('/show/{id}', name: 'app_commande')]
     public function index(Panier $panier = null): Response
     {

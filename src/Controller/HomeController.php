@@ -44,11 +44,15 @@ class HomeController extends AbstractController
 
         // on vérifie le role si il est bien admin
         // on crée le formulaire de création d'un produit
+        $form = null;
         if ($this->isGranted('ROLE_ADMIN')) {
             $produit = new Produit();
-            $form = $this->createForm(ProduitType::class, $produit);
+            $form = $this->createForm(ProduitType::class, $produit, [
+                'csrf_protection' => false, /** j'ai ajouté ça parce que sinon il me mettait une erreur au niveau du csrf */
+            ]);
 
             try {
+                $form->handleRequest($request);
                 if ($form->isSubmitted() && $form->isValid()) {
                     $this->em->persist($produit);
                     $this->em->flush();
@@ -63,6 +67,7 @@ class HomeController extends AbstractController
 
         return $this->render('home/index.html.twig', [
             'panier' => $panier,
+            'form' => $form,
             'produits' => $produits,
             'utilisateur' => $user,
         ]);

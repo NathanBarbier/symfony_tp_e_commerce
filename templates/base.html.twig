@@ -49,14 +49,6 @@
             </div>
         </nav>
     </header>
-    <div id="add_modal">
-        <div id='modal_close' onclick='closeModal()'>
-            <p>{{ 'modal.ajout.fermer'| trans }}</p> 
-        </div>
-        <div id="form_container">
-            formulaire d'ajout ici
-        </div>
-    </div>
 
     <div id="basket_modal">
         <div id='basket_close' onclick='closeBasketBasket()'>
@@ -66,10 +58,10 @@
             panier ici
         </div>
     </div>
-    <div class="head_produit"></div>
+    <div class="head_flash"></div>
     {%  for type, message in app.flashes %}
         {% for msg in message %}
-            <p class="m-0 alert alert-{{ type }}">{{ type }} : {{ msg }}</p>
+            <p class="m-0 alert custom-alert alert-{{ type }}">{{ type }} : {{ msg }}</p>
         {% endfor %}
     {% endfor %}
     
