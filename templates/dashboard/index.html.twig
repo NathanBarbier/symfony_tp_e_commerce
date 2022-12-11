@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+    <div class="container mt-5 mb-5">
+        <h1>{{ 'dashboard.panier.titre'|trans }}</h1>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>{{ 'account.order.id'|trans }}</th>
+                <th>{{ 'account.order.montant'|trans }}</th>
+                <th>{{ 'account.order.user'|trans }}</th>
+                <th>{{ 'account.order.contenu'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for panier in paniers %}
+                {% set montant = 0 %}
+                {% for contenuPanier in panier.ContenuPaniers %}
+                    {% set montant = montant + contenuPanier.produit.prix %}
+                    {% dump(montant) %}
+                {% endfor %}
+                <tr>
+                    <th>{{ panier.id }}</th>
+                    <th>{{ montant }}</th>
+                    <th>{{ panier.utilisateur }}</th>
+                    <th>
+                        {% for c in panier.contenuPaniers %}
+                            {{ 'dashboard.panier.contenu'|trans({'%produit%': c.produit.nom, '%quantite%':c.quantite }) }}
+                            <br>
+                        {% endfor %}
+                    </th>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>{{ 'account.name'|trans }}</th>
+                <th>{{ 'account.firstname'|trans }}</th>
+                <th>{{ 'account.email'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for utilisateur in utilisateurs %}
+                <tr>
+                    <th>{{ utilisateur.nom }}</th>
+                    <th>{{ utilisateur.prenom }}</th>
+                    <th>{{ utilisateur.email }}</th>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

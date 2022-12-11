@@ -25,6 +25,7 @@ class CommandeController extends AbstractController
     #[Route('/show/{id}', name: 'app_commande')]
     public function index(Panier $panier = null): Response
     {
+        // si le panier n'exste pas on redirige
         if (null === $panier) {
             $this->addFlash('warning', $this->translator->trans('commande.introuvable'));
             return $this->redirectToRoute('app_home');

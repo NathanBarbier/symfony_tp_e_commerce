@@ -34,6 +34,12 @@ security:
          - { path: ^/(%app.locales%)/account, roles: ROLE_USER }
         # - { path: ^/profile, roles: ROLE_USER }
 
+    role_hierarchy:
+        ROLE_SUPER_ADMIN:
+          [
+            ROLE_ADMIN
+          ]
+
 when@test:
     security:
         password_hashers:
