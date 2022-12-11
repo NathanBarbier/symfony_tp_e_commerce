@@ -16,9 +16,7 @@
         <nav>
             <div id="logo_container">
                 <a href="{{ path('app_home') }}"><img id='audiophile_logo' src="{{ asset('img/audiophile.png')}}" alt="audiophile logo"></a>
-                {% if app.user %}
-                   <p class='user_name'>{{ 'nav.bonjour'| trans}} {{app.user.nom|capitalize}}</p>
-
+                {% if app.user and is_granted('ROLE_ADMIN') %}
                     {# {% if is_granted('ROLE_ADMIN') %} #}
                         <div id="add_produit" onclick='OpenAddModal()'>+</div>
                     {# {% endif %}   #}
@@ -33,6 +31,7 @@
                     <li><a class="nav_link" href="{{ path('app_home') }}">{{ 'nav.ecouteurs'| trans }}</a></li>
                     {% if utilisateur != null %}
                         <li><a class="nav_link" href="{{ path('app_account', {'id': utilisateur.id}) }}">{{ 'navbar.my_account'|trans }}</a></li>
+                        <li><a class="nav_link" href="{{ path('app_logout') }}">{{ 'navbar.logout'|trans }}</a></li>
                     {% else %}
                         <li><a class="nav_link" href="{{ path('app_login') }}">{{ 'navbar.login'|trans }}</a></li>
                     {% endif %}
@@ -41,20 +40,12 @@
             
             <div id="nav_basket">
                 {% if app.user %}
-                        {% if is_granted('ROLE_ADMIN') %}
+                        {% if is_granted('ROLE_SUPER_ADMIN') %}
                             <div class='div_modal_hover'>
                                 <a class='modal_btn' href="#">{{ 'nav.gestion'| trans }}</a>
                             </div>
                         {% endif %}
-
-                        <div class='nav_connected'>
-                            <a class='nav_profil' href="#">{{ 'nav.profil'| trans }}</a>
-                            <a class='nav_logout' href="{{ path('app_logout') }}">{{ 'nav.deconnexion'| trans }}</a>
-                        </div>
-                {% else %}
-                    <a href="{{ path('app_register') }}" id='register'>{{ 'nav.inscription'| trans }}</a>
-                    <a href="{{ path('app_login') }}" id='login'>{{ 'nav.connexion'| trans }}</a>
-				{% endif %}
+                {% endif %}
 
                 <img id='basket_logo' src="{{ asset('img/basket.png')}}" alt="logo panier" onclick="OpenBasketModal()">
             </div>
