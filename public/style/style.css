@@ -164,6 +164,14 @@ nav {
   margin: 0;
 }
 
+.section_error {
+  min-height: 51.5vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 /* --------   Home    -------- */
 
 #head_home {
@@ -600,7 +608,7 @@ article {
 #basket_close {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center;  
   color: #F5F5F5;
   background-color: rgb(134, 30, 30);
   height: 5vh;

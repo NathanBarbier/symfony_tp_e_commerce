@@ -10,13 +10,41 @@
     
     <article>
 
+        {# afficher les produits des categories et les triés par pair et impart afin d'avoir différent style #}
+        {% if categorie.produits is not empty %}
+            {% set count = 0 %}
+            {% for p in categorie.produits %}
+                {% if count is even %}
+                    <div class="article">
+                        <img class="article_img" src="{{ asset('img/upload/image/' ~ p.photo) }}" alt="produit photo">
+                        <div class="article_desc">
+                            <p class="new">New product</p>
+                            <h2 class="article_title">{{ p.nom }}</h2>
+                            <p class="article_text">{{ p.description }}</p>
+                            <a class="article_btn" href="{{ path('app_produit', {'id': p.id}) }}" ></a>
+                        </div>
+                    </div> 
+                {% else %}
+                    <div class="article">
+                        <div class="article_desc">
+                            <p class="new">New product</p>
+                            <h2 class="article_title">{{ p.nom }}</h2>
+                            <p class="article_text">{{ p.description }}</p>
+                            <a class="article_btn" href="{{ path('app_produit', {'id': p.id}) }}" ></a>
+                        </div>
+                        <img class="article_img" src="{{ asset('img/upload/image/' ~ p.photo) }}" alt="produit photo">
+                    </div> 
+                {% endif %} 
+                {% set count = count + 1 %}
+            {% endfor %}
+        {% endif %}
+
         <div class="article">
             <img class="article_img" src="{{ asset('img/product-xx99-mark-two-headphones/image-category-page-preview.jpg') }}" alt="casque audio">
             <div class="article_desc">
                 <p class="new">New product</p>
                 <h2 class="article_title">XX99 Mark II Headphones</h2>
-                <p class="article_text">The new XX99 Mark II headphones is the pinnacle of pristine audio. It redefines your premium headphone experience by reproducing the balanced depth and precision of studio-quality sound.</p>
-                <a class="article_btn"></a>
+                <p class="article_text">The new XX99 Mark II headphones is the pinnzacle of pristine audio. It redefines your premium headphone experience by reproducing the balanced depth and precision of studio-quality sound.</p>
             </div>
         </div>
 
@@ -26,7 +54,6 @@
                 <h2 class="article_title">XX99 Mark I Headphones</h2>
                 <p class="article_text">As the gold standard for headphones, the classic XX99 Mark I offers detailed and accurate audio 
                     reproduction for audiophiles, mixing engineers, and music aficionados alike in studios and on the go.</p>
-                <a class="article_btn"></a>
             </div>
             <img class="article_img" src="{{ asset('img/product-xx99-mark-one-headphones/image-category-page-preview.jpg') }}" alt="casque audio">
         </div>
@@ -38,7 +65,6 @@
                 <h2 class="article_title">XX59 Headphones</h2>
                 <p class="article_text">Enjoy your audio almost anywhere and customize it to your specific tastes with the XX59 headphones. 
                     The stylish yet durable versatile wireless headset is a brilliant companion at home or on the move.</p>
-                <a class="article_btn"></a>
             </div>
         </div>
 
