@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Categorie;
 use App\Entity\Panier;
-use App\Entity\Produit as EntityProduit;
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,8 +13,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class CategorieController extends AbstractController
 {
     #[Route('/{id}', name: 'app_categorie')]
-    public function index(Categorie $categorie,): Response
+    public function index(Categorie $categorie = null): Response
     {
+        if (null === $categorie) {
+            return $this->redirectToRoute('app_home');
+        }
+
         $panier = new Panier();
 
         /** Si l'utilisateur est connecté on récupère son panier */
