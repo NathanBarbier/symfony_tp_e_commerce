@@ -44,33 +44,32 @@
         {% endif %}
         
         <div class="article_container">
-        <div id='back_container'>
-           <a href='{{ path('app_home') }}' class='GoBack'><-{{ 'go_back'|trans }}</a>
-        </div>
-        <div class="article_container_inner">
-            <div class="article_img">
-                <img src="{{ asset('/uploads/image/' ~ produit.photo) }}" alt="">
+            <div id='back_container'>
+                <a href='{{ path('app_home') }}' class='GoBack'><-{{ 'go_back'|trans }}</a>
             </div>
-            <div class="desc_container">
-                <div class="new P">New product</div>
-                <h1 class="article_title">{{ produit.nom }}</h1>
-                <p class="article_text">{{ produit.description }}</p>
-
-                <div class='priceStock'>
-                    <p class="Article_price">$ {{ produit.prix | number_format }}</p>
-                    <p id="Article_qte">{{ 'produit.stock'|trans({'%stock%': produit.stock, '%nom%': produit.nom }) }}</p>
-
+            <div class="article_container_inner">
+                <div class="article_img">
+                    <img src="{{ asset('/uploads/image/' ~ produit.photo) }}" alt="">
                 </div>
+                <div class="desc_container">
+                    <div class="new P">New product</div>
+                    <h1 class="article_title">{{ produit.nom }}</h1>
+                    <p class="article_text">{{ produit.description }}</p>
 
-                <form action="{{ path('create_contenu_panier', {'id': produit.id}) }}" method='post'>
-                    <div class="add_cart">
-                        <button type='submit' class="add_btn">
-                            Add to cart
-                        </button>
+                    <div class='priceStock'>
+                        <p class="Article_price">$ {{ produit.prix | number_format }}</p>
+                        <p id="Article_qte">{{ 'produit.stock'|trans({'%stock%': produit.stock, '%nom%': produit.nom }) }}</p>
                     </div>
-                </form>
+
+                    <form action="{{ path('create_contenu_panier', {'id': produit.id}) }}" method='post'>
+                        <div class="add_cart">
+                            <button type='submit' class="add_btn">
+                                Add to cart
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
         </div>
 
        <div id="alt_articles_home">
